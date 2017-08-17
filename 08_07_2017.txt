@@ -1,0 +1,52 @@
+# Weekly Notes
+# August 4th 2017 (starting Friday after meeting)
+
+## TODO:
+
+- Fix Roy's networking so that he can be connected to using both ethernet and wifi
+- Cleanup of tower install branch of CnR2
+- Merge of tower install branch of CnR2
+- Documentation, esp related to distributed implementation of experiment
+
+### What's been done:
+
+- Occupancy grid generation using map yaml files that are currently used to create softmax models and belief map. Desired resolution can be specified in [m/px] and the og will be sized accordingly.
+	- Still to be done: also generate associated yaml file: DONE! tho not pretty...
+	- Use generated occupancy grid for classic map on robots to solve issues with python poses and og 		lining up.
+
+- Implemented use of Theora compressed video for all interface video feeds. Performance visually has improved massively. Impact on network is still unknown.
+
+- Tested two robot scenario with a robber connected to ethernet and cop connected via wifi. Robber performed very well with no/few warnings thrown for a 10 minute-ish run, while cop (Deckard) did not run well at all.
+
+- Semi-solved issues with robots connecting via ethernet. Roy currently cannot connect using wifi ip unless ethernet is plugged in.
+
+### Network notes:
+
+- Steve suggested setting up a NTP server on the router (OpenWrt), as going to ntp.ubuntu.com can be problematic, especially wirelessly.
+
+- Also, suggested centralizing as much as possible the setting of IP addresses to the router, using MAC addresses. Currently thinking to assign a static ip each to the wireless and wired of each robot based on MAC adresses, as the ethernet and usb for wifi are on different controllers.
+
+- LT is working on moving the Kinect to the On The Go (OTG) micro USB port. This might help if the network problems have to do with the amount of data being pushed through the USB controller.
+
+### Meeting notes:
+
+- Validate Theora improving network
+- Additional experiment router / split frequencies for different sensors?
+- Validate occupancy grids
+- wifi dongles not connecting -> talk to Steve
+- 802.11n mode for wifi dongles -> will require kernel update on odroid. iperf for network testing
+- ethernet and wifi MAC address setup for connecting
+- how to test Kinect video dropping packets on OTG bus vs normal USB2.0 controller?
+	-> OMX IL: use hardware acceleration
+	-> gstreamer: wrapper for hardware acceleration
+- rostopic hz on local, then move to different machine both on ethernet and wifi to test the effect of moving the Kinect to the OTG hub
+
+### What's next:
+
+- Fix the wifi on robots
+- test OTG topology
+- validate theora and occupacy grids
+- further out -> ethernet and wifi MAC setup
+
+
+ 
